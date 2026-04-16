@@ -43,6 +43,16 @@ describe('Validação de Senhas Seguras', () => {
     expect(validatePassword(undefined).erros).toContain('A senha é obrigatória');
   });
 
-  
+  test('deve retornar múltiplos erros para senha muito inválida', () => {
+    const r = validatePassword('abc');
+    expect(r.valida).toBe(false);
+    expect(r.erros.length).toBeGreaterThan(1);
+  });
+ 
+  test('deve aceitar senha válida e retornar erros vazio', () => {
+    const r = validatePassword('Senha@123');
+    expect(r.valida).toBe(true);
+    expect(r.erros).toHaveLength(0);
+  });
 
 });
