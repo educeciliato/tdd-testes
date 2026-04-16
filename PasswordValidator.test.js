@@ -20,4 +20,16 @@ describe('Validação de Senhas Seguras', () => {
     expect(r.erros).toContain('A senha deve ter pelo menos uma letra minúscula');
   });
 
+  test('deve rejeitar senha sem número', () => {
+    const r = validatePassword('Abc!xyzw');
+    expect(r.valida).toBe(false);
+    expect(r.erros).toContain('A senha deve ter pelo menos um número');
+  });
+ 
+  test('deve rejeitar senha sem caractere especial', () => {
+    const r = validatePassword('Abc1xyzw');
+    expect(r.valida).toBe(false);
+    expect(r.erros).toContain('A senha deve ter pelo menos um caractere especial (!@#$%^&*)');
+  });
+
 });
