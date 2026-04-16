@@ -4,6 +4,7 @@ const REGRAS = [
     { erro: 'A senha deve ter pelo menos uma letra minúscula',              validar: (s) => /[a-z]/.test(s)        },
     { erro: 'A senha deve ter pelo menos um número',                        validar: (s) => /[0-9]/.test(s)        },
     { erro: 'A senha deve ter pelo menos um caractere especial (!@#$%^&*)', validar: (s) => /[!@#$%^&*]/.test(s)  },
+    { erro: 'A senha não pode conter espaços em branco',                    validar: (s) => !/ /.test(s)           }
 ];
 
 

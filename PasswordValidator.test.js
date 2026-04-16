@@ -32,4 +32,17 @@ describe('Validação de Senhas Seguras', () => {
     expect(r.erros).toContain('A senha deve ter pelo menos um caractere especial (!@#$%^&*)');
   });
 
+  test('deve rejeitar senha com espaço em branco', () => {
+    const r = validatePassword('Ab1! xyz');
+    expect(r.valida).toBe(false);
+    expect(r.erros).toContain('A senha não pode conter espaços em branco');
+  });
+ 
+  test('deve rejeitar senha nula ou undefined', () => {
+    expect(validatePassword(null).erros).toContain('A senha é obrigatória');
+    expect(validatePassword(undefined).erros).toContain('A senha é obrigatória');
+  });
+
+  
+
 });
