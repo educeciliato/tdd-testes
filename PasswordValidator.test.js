@@ -8,5 +8,16 @@ describe('Validação de Senhas Seguras', () => {
     expect(r.erros).toContain('A senha deve ter no mínimo 8 caracteres');
   });
 
+  test('deve rejeitar senha sem letra maiúscula', () => {
+    const r = validatePassword('ab1!xyzw');
+    expect(r.valida).toBe(false);
+    expect(r.erros).toContain('A senha deve ter pelo menos uma letra maiúscula');
+  });
+ 
+  test('deve rejeitar senha sem letra minúscula', () => {
+    const r = validatePassword('AB1!XYZW');
+    expect(r.valida).toBe(false);
+    expect(r.erros).toContain('A senha deve ter pelo menos uma letra minúscula');
+  });
 
 });
